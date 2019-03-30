@@ -49,12 +49,14 @@
     <build>
         <plugins>
             <plugin>
+                <!--打包插件-->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>1.3.3.RELEASE</version>
                 <executions>
                     <execution>
                         <goals>
+                            <!--按照SpringBoot的方式打包-->
                             <goal>repackage</goal>
                         </goals>
                     </execution>
