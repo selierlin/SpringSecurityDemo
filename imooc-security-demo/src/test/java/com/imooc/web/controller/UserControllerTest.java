@@ -34,7 +34,7 @@ public class UserControllerTest {
      */
     @Test
     public void whenQuerySuccess() throws Exception {
-        mockMvc.perform(
+        String result = mockMvc.perform(
                 MockMvcRequestBuilders.get("/user")//模拟请求/user地址
                         //UserQueryCondition 相关参数：
                         .param("username", "传入的username")
@@ -45,7 +45,9 @@ public class UserControllerTest {
                         .param("sort", "age,desc").param("sort", "username,asc")
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(MockMvcResultMatchers.status().isOk())//期望结果返回200
-                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(3));//期望返回结果的数组长度为3
+                .andExpect(MockMvcResultMatchers.jsonPath("$.length()").value(3))//期望返回结果的数组长度为3
+                .andReturn().getResponse().getContentAsString();//将服务器返回的字符串输出
+        System.out.println(result);
     }
 
     @Test
