@@ -9,16 +9,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
     //在Controller方法上指定视图
     @JsonView(User.UserSimpleView.class)
-	@GetMapping("/user")
+	@GetMapping
 	public List<User> query(UserQueryCondition condition
 			, @PageableDefault(page = 2,size = 10,sort="username,desc") Pageable pageable){
 		//System.out.println(userQueryCondition);
@@ -33,7 +35,7 @@ public class UserController {
 
 	//在Controller方法上指定视图
     @JsonView(User.UserDetailView.class)
-	@GetMapping("/user/{id:\\d+}")//id:\d+表示正则匹配数字
+	@GetMapping("/{id:\\d+}")//id:\d+表示正则匹配数字
 	public User getInfo(@PathVariable String id) {
 		System.out.println("进入getInfo服务");
 		User user = new User();
