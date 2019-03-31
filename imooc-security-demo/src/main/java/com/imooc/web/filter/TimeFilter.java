@@ -1,12 +1,10 @@
 package com.imooc.web.filter;
 
-import org.springframework.stereotype.Component;
-
 import javax.servlet.*;
 import java.io.IOException;
 import java.util.Date;
 
-@Component
+//@Component
 public class TimeFilter implements Filter {
 
 	@Override
