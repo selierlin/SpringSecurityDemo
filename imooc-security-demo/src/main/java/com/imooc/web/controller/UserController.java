@@ -3,7 +3,6 @@ package com.imooc.web.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.imooc.dto.User;
 import com.imooc.dto.UserQueryCondition;
-import com.imooc.exception.UserNotExistException;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.data.domain.Pageable;
@@ -38,12 +37,11 @@ public class UserController {
     @GetMapping("/{id:\\d+}")//id:\d+表示正则匹配数字
     public User getInfo(@PathVariable String id) {
 
-        throw new UserNotExistException("user not exist");
-/*
+        //throw new UserNotExistException("user not exist");
         System.out.println("进入getInfo服务");
         User user = new User();
         user.setUsername("tom");
-        return user;*/
+        return user;
     }
 
     @PostMapping
