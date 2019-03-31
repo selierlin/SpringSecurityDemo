@@ -42,6 +42,7 @@ public class User {
 		this.password = password;
 	}
 
+    @JsonView(UserSimpleView.class)
 	public Date getBirthday() {
 		return birthday;
 	}

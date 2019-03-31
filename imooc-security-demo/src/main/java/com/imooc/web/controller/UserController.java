@@ -7,10 +7,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +40,14 @@ public class UserController {
 		return user;
 	}
 
+    @PostMapping
+    public User create(@RequestBody User user) {//@RequestBody映射请求体到Java方法的参数
+        //获取到的时间戳会自己被转化成Date类型
+        System.out.println(ReflectionToStringBuilder.toString(user, ToStringStyle.MULTI_LINE_STYLE));
+        user.setId("1");
+        return user;
+    }
+
 	/*@PostMapping("/regist")
 	public void regist(User user, HttpServletRequest request) {
 
@@ -56,18 +61,7 @@ public class UserController {
 		return user;
 	}
 
-	@PostMapping
-	@ApiOperation(value = "创建用户")
-	public User create(@Valid @RequestBody User user) {
 
-		System.out.println(user.getId());
-		System.out.println(user.getUsername());
-		System.out.println(user.getPassword());
-		System.out.println(user.getBirthday());
-
-		user.setId("1");
-		return user;
-	}
 
 	@PutMapping("/{id:\\d+}")
 	public User update(@Valid @RequestBody User user, BindingResult errors) {
