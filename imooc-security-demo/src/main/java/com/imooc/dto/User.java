@@ -1,7 +1,9 @@
 package com.imooc.dto;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.Past;
 import java.util.Date;
 
 public class User {
@@ -12,9 +14,11 @@ public class User {
 	private String id;
 	
 	private String username;
-	
+
+    @NotBlank
 	private String password;
-	
+
+    @Past
 	private Date birthday;
 
 	public String getId() {

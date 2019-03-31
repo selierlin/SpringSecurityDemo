@@ -7,8 +7,10 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +43,11 @@ public class UserController {
 	}
 
     @PostMapping
-    public User create(@RequestBody User user) {//@RequestBody映射请求体到Java方法的参数
+    public User create(@Valid @RequestBody User user //@Valid验证请求参数的合法性
+			, BindingResult errors) {//BingdResult 查看错误信息，处理检验结果
+    	if(errors.hasErrors()){
+    		errors.getAllErrors().stream().forEach(error-> System.out.println(error.getDefaultMessage()));
+		}
         //获取到的时间戳会自己被转化成Date类型
         System.out.println(ReflectionToStringBuilder.toString(user, ToStringStyle.MULTI_LINE_STYLE));
         user.setId("1");
