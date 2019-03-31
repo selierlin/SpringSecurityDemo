@@ -74,6 +74,11 @@ public class UserController {
         return user;
     }
 
+    @DeleteMapping("/{id:\\d+}")
+    public void delete(@PathVariable String id) {
+        System.out.println(id);
+    }
+
 	/*@PostMapping("/regist")
 	public void regist(User user, HttpServletRequest request) {
 
@@ -86,14 +91,6 @@ public class UserController {
 	public Object getCurrentUser(@AuthenticationPrincipal UserDetails user) {
 		return user;
 	}
-
-
-
-
-
-	@DeleteMapping("/{id:\\d+}")
-	public void delete(@PathVariable String id) {
-		System.out.println(id);
-	}*/
+	*/
 
 }
