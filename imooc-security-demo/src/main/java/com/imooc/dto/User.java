@@ -15,10 +15,10 @@ public class User {
 	
 	private String username;
 
-    @NotBlank//不能为空
+    @NotBlank(message = "密码不能为空")
 	private String password;
 
-    @Past//必须是过去的时间
+    @Past(message = "生日必须是过去的时间")
 	private Date birthday;
 
 	public String getId() {

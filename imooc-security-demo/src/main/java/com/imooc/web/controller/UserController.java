@@ -8,7 +8,6 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -59,16 +58,12 @@ public class UserController {
     public User update(@Valid @RequestBody User user, BindingResult errors) {
 
         if (errors.hasErrors()) {
-            errors.getAllErrors().stream().forEach(error -> {
-                FieldError fieldError = (FieldError) error;
-                String message = fieldError.getField() +":"+ error.getDefaultMessage();
-                System.out.println(message);
-                /**
-                 * 控制台输出：
-                 * birthday:must be in the past
-                 * password:may not be empty
-                 */
-            });
+            errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
+            /**
+             * 控制台输出：
+             * 密码不能为空
+             * 生日必须是过去的时间
+             */
         }
         System.out.println(user.getId());
         System.out.println(user.getUsername());
