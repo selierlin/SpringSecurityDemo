@@ -95,7 +95,7 @@ public class UserControllerTest {
                 .atZone(ZoneId.systemDefault())//设置时区为系统默认时区
                 .toInstant().toEpochMilli());//将时间转换为纪元的毫秒数
         System.out.println(date.getTime());
-        String content = "{\"id\":\"1\", \"username\":\"tom\",\"password\":null,\"birthday\":"+date.getTime()+"}";
+        String content = "{\"id\":\"1\", \"username\":\"admin\",\"password\":null,\"birthday\":"+date.getTime()+"}";
         String reuslt = mockMvc.perform(MockMvcRequestBuilders.put("/user/1").contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(content))
                 .andExpect(MockMvcResultMatchers.status().isOk())
