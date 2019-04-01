@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication
 @RestController
-@EnableSwagger2
+@EnableSwagger2//开启Swagger：访问 地址:端口/swagger-ui.html
 public class DemoApplication {
 
 	/**
