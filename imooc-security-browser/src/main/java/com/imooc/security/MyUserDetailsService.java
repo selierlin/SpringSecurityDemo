@@ -21,7 +21,10 @@ public class MyUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		logger.info("表单登录用户名:" + username);
 		List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("admin");
-		return new User(username,"123456",authorities);
+        //根据查找到的用户信息判断用户是否被冻结
+		return new User(username,"123456",
+                true,true,true,false,//是否可用、过期、凭证过期、账户锁定
+                authorities);
 	}
 
 }
