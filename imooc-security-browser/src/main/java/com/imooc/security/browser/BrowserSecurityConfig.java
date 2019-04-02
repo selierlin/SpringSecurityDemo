@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
@@ -17,6 +18,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     private SecurityProperties securityProperties;
     @Autowired
     private AuthenticationSuccessHandler imoocAuthenticationSuccessHandler;
+    @Autowired
+    private AuthenticationFailureHandler imoocAuthenctiationFailureHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -25,6 +28,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/authentication/require")//设置登录页面
                 .loginProcessingUrl("/authentication/form")//登录请求处理地址
                 .successHandler(imoocAuthenticationSuccessHandler)//指定登录成功处理
+                .failureHandler(imoocAuthenctiationFailureHandler)//指定登录失败处理器
                 .and()
                 .authorizeRequests()//对请求进行授权
                 .antMatchers("/authentication/require"
